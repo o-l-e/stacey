@@ -31,6 +31,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ index.php?/$1/ [L,QSA]
 
 # Rewrite any file calls to the public directory
+<<<<<<< HEAD
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !public/
@@ -46,3 +47,10 @@ RedirectMatch 404 \.(txt|yml)$
 <IfModule php5_module>
   php_value session.cookie_httponly true
 </IfModule>
+=======
+RewriteCond %{REQUEST_URI} !(app|public|content)/(.*)$
+RewriteRule ^(.+) public/$1 [L]
+
+# RewriteCond %{REQUEST_URI} content/(.*).txt$
+# RewriteRule - / [R,L]
+>>>>>>> FETCH_HEAD
