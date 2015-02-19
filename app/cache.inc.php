@@ -68,7 +68,8 @@ Class Cache {
   }
 
   function create_full_cache($pages = null) {
-    $search_fields = array('url', 'file_path', 'title', 'thumb', 'content', 'date', 'slug');
+    # $search_fields = array('thumb', 'parents', 'url', 'file_path', 'title', 'heading', 'author', 'byline', 'content', 'subheading', 'intro', 'architect', 'facts', 'photo', 'address');
+    $search_fields = array('thumb', 'url', 'slug', 'file_path', 'title', 'date', 'content', 'root_path', 'permalink', 'parents', 'parent');
     $store = array();
     if (!isset($pages)) $pages = Helpers::file_cache('./content');
     foreach ($pages as $page) {
