@@ -182,7 +182,7 @@ Class PageData {
     # page.numbered_images
     $page->numbered_images = Helpers::list_files($page->file_path, '/^\d+[^\/]*(?<!thumb|_lge|_sml)\.(gif|jpg|png|jpeg)$/i', false);
     # page.video
-    $page->video = Helpers::list_files($page->file_path, '/\.(mov|mp4|m4v)$/i', false);
+    $page->video = Helpers::list_files($page->file_path, '/\.(mov|mp4|m4v|webm|ogv)$/i', false);
 
     # page.swf, page.html, page.doc, page.pdf, page.mp3, etc.
     # create a variable for each file type included within the page's folder (excluding .yml files)
@@ -203,7 +203,8 @@ Class PageData {
   }
 
   static function preparse_text($text) {
-    $content = preg_replace_callback('/:\s*(\n)?\+{3,}([\S\s]*?)\+{3,}/', create_function('$match',
+    $content = preg_replace_callback('/:\s*(\n)?\-{4,}([\S\s]*?)\-{4,}/', create_function('$match',
+    # $content = preg_replace_callback('/:\s*(\n)?\+{3,}([\S\s]*?)\+{3,}/', create_function('$match',
       'return ": |\n  ".preg_replace("/\n/", "\n  ", $match[2]);'
     ), $text);
     return $content;
